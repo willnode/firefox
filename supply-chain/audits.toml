@@ -3956,6 +3956,11 @@ criteria = "safe-to-deploy"
 version = "0.2.6"
 notes = "This crate uses unsafe block, but this doesn't have network and file access. I audited code."
 
+[[audits.libredox]]
+who = "Wildan M <willnode@wellosoft.net>"
+criteria = "safe-to-deploy"
+version = "0.1.12"
+
 [[audits.libsqlite3-sys]]
 who = "Ben Dean-Kawamura <bdk@mozilla.com>"
 criteria = "safe-to-deploy"
@@ -5587,9 +5592,19 @@ criteria = "safe-to-deploy"
 delta = "1.10.1 -> 1.10.2"
 
 [[audits.redox_syscall]]
+who = "Wildan M <willnode@wellosoft.net>"
+criteria = "safe-to-deploy"
+version = "0.5.18"
+
+[[audits.redox_syscall]]
 who = "Mike Hommey <mh+mozilla@glandium.org>"
 criteria = "safe-to-deploy"
 delta = "0.2.13 -> 0.2.16"
+
+[[audits.redox_users]]
+who = "Wildan M <willnode@wellosoft.net>"
+criteria = "safe-to-deploy"
+version = "0.4.6"
 
 [[audits.regex]]
 who = "Mike Hommey <mh+mozilla@glandium.org>"

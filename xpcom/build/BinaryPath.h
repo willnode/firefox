@@ -131,11 +131,15 @@ class BinaryPath {
     return rv;
   }
 
-#elif defined(ANDROID)
+#elif defined(ANDROID) || defined(XP_REDOX)
   static nsresult Get(char aResult[MAXPATHLEN]) {
     // On Android, we use the MOZ_ANDROID_LIBDIR variable that is set by the
     // Java bootstrap code.
+#if defined(XP_REDOX)
+    const char* libDir = getenv("MOZ_REDOX_LIBDIR");
+#else
     const char* libDir = getenv("MOZ_ANDROID_LIBDIR");
+#endif
     if (!libDir) {
       return NS_ERROR_FAILURE;
     }

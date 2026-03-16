@@ -3235,6 +3235,11 @@ criteria = "safe-to-deploy"
 version = "0.2.6"
 notes = "This crate uses unsafe block, but this doesn't have network and file access. I audited code."
 
+[[audits.libredox]]
+who = "Wildan M <willnode@wellosoft.net>"
+criteria = "safe-to-deploy"
+version = "0.1.12"
+
 [[audits.libsqlite3-sys]]
 who = "Ben Dean-Kawamura <bdk@mozilla.com>"
 criteria = "safe-to-deploy"
@@ -4560,9 +4565,19 @@ criteria = "safe-to-deploy"
 delta = "1.10.1 -> 1.10.2"
 
 [[audits.redox_syscall]]
+who = "Wildan M <willnode@wellosoft.net>"
+criteria = "safe-to-deploy"
+version = "0.5.18"
+
+[[audits.redox_syscall]]
 who = "Mike Hommey <mh+mozilla@glandium.org>"
 criteria = "safe-to-deploy"
 delta = "0.2.13 -> 0.2.16"
+
+[[audits.redox_users]]
+who = "Wildan M <willnode@wellosoft.net>"
+criteria = "safe-to-deploy"
+version = "0.4.6"
 
 [[audits.regex]]
 who = "Mike Hommey <mh+mozilla@glandium.org>"
@@ -4676,7 +4691,7 @@ This is a fairly straightforward FFI wrapper crate for `regex`, maintained by
 the `regex` developers in the same repository.
 
 This crate is explicitly designed for FFI use, and should not be used directly
-by Rust code. The exported `extern \"C\"` functions are not marked as `unsafe`,
+by Rust code. The exported `extern "C"` functions are not marked as `unsafe`,
 meaning that it is technically incorrect to use them from within Rust code,
 however they are reasonable to use from C code.
 
@@ -6463,7 +6478,7 @@ notes = "Clean, safe macros for zerocopy."
 who = "Makoto Kato <m_kato@ga2.so-net.ne.jp>"
 criteria = "safe-to-deploy"
 version = "0.1.2"
-notes = "This crate is zero-copy version of \"From\". This has no unsafe code and uses no ambient capabilities."
+notes = 'This crate is zero-copy version of "From". This has no unsafe code and uses no ambient capabilities.'
 
 [[audits.zerofrom]]
 who = "Makoto Kato <m_kato@ga2.so-net.ne.jp>"

@@ -142,7 +142,8 @@ version = "0.16.0"
 default-features = false
 
 [dependencies.quinn-udp]
-version = "0.6"
+git = "https://github.com/willnode/quinn"
+branch = "redox"
 features = ["log"]
 default-features = false
 

@@ -4,10 +4,7 @@ use std::{
     net::{IpAddr, Ipv4Addr},
     os::windows::io::AsRawSocket,
     ptr,
-    sync::{
-        LazyLock, Mutex,
-        atomic::{AtomicUsize, Ordering},
-    },
+    sync::{LazyLock, Mutex},
     time::Instant,
 };
 
@@ -27,7 +24,6 @@ use crate::{
 #[derive(Debug)]
 pub struct UdpSocketState {
     last_send_error: Mutex<Instant>,
-    max_gso_segments: AtomicUsize,
 
     /// Whether the underlying Winsock provider supports IPv4 ECN socket options/control messages.
     ///
@@ -157,7 +153,6 @@ impl UdpSocketState {
         let now = Instant::now();
         Ok(Self {
             last_send_error: Mutex::new(now.checked_sub(2 * IO_ERROR_LOG_INTERVAL).unwrap_or(now)),
-            max_gso_segments: AtomicUsize::new(max_gso_segments(&*socket.0)),
             ecn_v4_supported,
             ecn_v6_supported,
         })
@@ -337,7 +332,7 @@ impl UdpSocketState {
     /// while using GSO.
     #[inline]
     pub fn max_gso_segments(&self) -> usize {
-        self.max_gso_segments.load(Ordering::Relaxed)
+        *MAX_GSO_SEGMENTS
     }
 
     /// The number of segments to read when GRO is enabled. Used as a factor to
@@ -557,10 +552,16 @@ static WSARECVMSG_PTR: LazyLock<WinSock::LPFN_WSARECVMSG> = LazyLock::new(|| {
     wsa_recvmsg_ptr
 });
 
-fn max_gso_segments(socket: &impl AsRawSocket) -> usize {
+static MAX_GSO_SEGMENTS: LazyLock<usize> = LazyLock::new(|| {
+    let socket = match std::net::UdpSocket::bind("[::]:0")
+        .or_else(|_| std::net::UdpSocket::bind((Ipv4Addr::LOCALHOST, 0)))
+    {
+        Ok(socket) => socket,
+        Err(_) => return 1,
+    };
     const GSO_SIZE: c_uint = 1500;
     match set_socket_option(
-        socket,
+        &socket,
         WinSock::IPPROTO_UDP,
         WinSock::UDP_SEND_MSG_SIZE,
         GSO_SIZE,
@@ -569,4 +570,4 @@ fn max_gso_segments(socket: &impl AsRawSocket) -> usize {
         Ok(()) => 512,
         Err(_) => 1,
     }
-}
+});

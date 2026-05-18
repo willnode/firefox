@@ -4542,9 +4542,9 @@ criteria = "safe-to-deploy"
 delta = "0.2.6 -> 0.2.9"
 
 [[audits.mtu]]
-who = "Max Leonard Inden <mail@max-inden.de>"
+who = "Wildan M <willnode@wellosoft.net>"
 criteria = "safe-to-deploy"
-delta = "0.3.0 -> 0.3.0@git:5acfebb8068e851e273b44c941e6644b97d2861c"
+delta = "0.3.0 -> 0.3.0@git:26587abcf32e2c809445116597caf1a828226ec5"
 importable = false
 
 [[audits.naga]]
@@ -5464,6 +5464,11 @@ delta = "0.5.11 -> 0.5.12"
 who = "Max Leonard Inden <mail@max-inden.de>"
 criteria = "safe-to-deploy"
 delta = "0.5.12 -> 0.5.13"
+
+[[audits.quinn-udp]]
+who = "Wildan M <willnode@wellosoft.net>"
+criteria = "safe-to-deploy"
+delta = "0.5.13 -> 0.5.14"
 
 [[audits.quinn-udp]]
 who = "Oskar Mansfeld <git@omansfeld.net>"

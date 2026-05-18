@@ -62,7 +62,8 @@ default-features = false
 path = "./../neqo-common"
 
 [dependencies.quinn-udp]
-version = "0.6"
+git = "https://github.com/willnode/quinn"
+branch = "redox"
 features = ["log"]
 default-features = false
 

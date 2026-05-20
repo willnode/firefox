@@ -137,6 +137,9 @@ class BinaryPath {
     // Java bootstrap code.
 #if defined(XP_REDOX)
     const char* libDir = getenv("MOZ_REDOX_LIBDIR");
+    if (!libDir) {
+      libDir = "/usr/lib/firefox";
+    }
 #else
     const char* libDir = getenv("MOZ_ANDROID_LIBDIR");
 #endif

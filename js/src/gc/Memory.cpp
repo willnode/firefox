@@ -971,6 +971,8 @@ bool MarkPagesUnusedSoft(void* region, size_t length) {
     status = madvise(region, length, MADV_FREE);
 #  elif defined(XP_SOLARIS)
     status = posix_madvise(region, length, POSIX_MADV_DONTNEED);
+#  elif defined(XP_REDOX)
+    status = 0; // madvise is not available
 #  else
     status = madvise(region, length, MADV_DONTNEED);
 #  endif

@@ -121,6 +121,8 @@ static bool ProbeRegion(uintptr_t aRegion, uintptr_t aSize) {
 #  ifdef XP_SOLARIS
   if (posix_madvise(reinterpret_cast<void*>(aRegion), aSize,
                     POSIX_MADV_NORMAL)) {
+#  elif defined(XP_REDOX)
+  if (0) {
 #  else
   if (madvise(reinterpret_cast<void*>(aRegion), aSize, MADV_NORMAL)) {
 #  endif

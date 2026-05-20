@@ -4,7 +4,7 @@
  *
  * \author Rickard E. (Rik) Faith <faith@valinux.com>
  */
- 
+
 /*
  * Copyright 1999, 2000 Precision Insight, Inc., Cedar Park, Texas.
  * Copyright 2000 VA Linux Systems, Inc., Sunnyvale, California.
@@ -47,7 +47,7 @@ extern "C" {
 #define DRM_MAX_MINOR   64 /* deprecated */
 #endif
 
-#if defined(__linux__)
+#if defined(__linux__) || defined(__redox__)
 
 #define DRM_IOCTL_NR(n)		_IOC_NR(n)
 #define DRM_IOC_VOID		_IOC_NONE

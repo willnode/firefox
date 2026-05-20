@@ -10,6 +10,8 @@ elif CONFIG['TARGET_KERNEL'] == 'SunOS':
     libevent_include_suffix = 'solaris'
 elif CONFIG['TARGET_OS'] == 'Android':
     libevent_include_suffix = 'android'
+elif CONFIG['TARGET_OS'] == 'Redox':
+    libevent_include_suffix = 'redox'
 else:
     libevent_include_suffix = 'linux'
 

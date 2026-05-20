@@ -28,7 +28,7 @@
 #    define ANGLE_PLATFORM_POSIX 1
 #elif defined(__FreeBSD__) || defined(__OpenBSD__) || defined(__NetBSD__) ||              \
     defined(__DragonFly__) || defined(__sun) || defined(__GLIBC__) || defined(__GNU__) || \
-    defined(__QNX__) || defined(__Fuchsia__) || defined(__HAIKU__)
+    defined(__QNX__) || defined(__redox__) || defined(__Fuchsia__) || defined(__HAIKU__)
 #    define ANGLE_PLATFORM_POSIX 1
 #else
 #    error Unsupported platform.
@@ -102,7 +102,7 @@
 #if defined(_MSC_VER) && !defined(_M_ARM) && !defined(_M_ARM64)
 #    include <intrin.h>
 #    define ANGLE_USE_SSE
-#elif defined(__GNUC__) && (defined(__x86_64__) || defined(__i386__))
+#elif defined(__GNUC__) && (defined(__x86_64__) || defined(__i386__)) && !defined(__redox__)
 #    include <x86intrin.h>
 #    define ANGLE_USE_SSE
 #endif

@@ -110,7 +110,7 @@ if CONFIG["TARGET_OS"] == "iOS":
         "src/base/process_util_ios.cpp",
     ]
 
-if CONFIG["TARGET_KERNEL"] in ("DragonFly", "FreeBSD", "NetBSD", "OpenBSD"):
+if CONFIG["TARGET_KERNEL"] in ("DragonFly", "FreeBSD", "NetBSD", "OpenBSD", "Redox"):
     SOURCES += [
         "src/base/process_util_linux.cc",
         "src/base/time_posix.cc",
@@ -128,6 +128,9 @@ if CONFIG["TARGET_KERNEL"] == "Linux":
         ]
         DEFINES["ANDROID"] = True
         DEFINES["_POSIX_MONOTONIC_CLOCK"] = 0
+
+if CONFIG["TARGET_KERNEL"] == "Redox":
+    DEFINES["_GNU_SOURCE"] = True
 
 if CONFIG["TARGET_KERNEL"] == "SunOS":
     SOURCES += [

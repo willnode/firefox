@@ -29,6 +29,7 @@ if CONFIG["OS_ARCH"] in (
     "NetBSD",
     "OpenBSD",
     "SunOS",
+    "Redox",
 ) or CONFIG["OS_ARCH"].startswith("GNU_"):
     if CONFIG["TARGET_CPU"] == "x86_64":
         SOURCES += [
@@ -88,7 +89,7 @@ if CONFIG["OS_ARCH"] == "Linux":
         elif CONFIG["COMPILE_ENVIRONMENT"]:
             error("Unknown C++ compiler, xptcall assembly will probably be incorrect.")
 
-if CONFIG["OS_ARCH"] in ("Linux", "FreeBSD", "NetBSD", "OpenBSD"):
+if CONFIG["OS_ARCH"] in ("Linux", "Redox", "FreeBSD", "NetBSD", "OpenBSD"):
     if CONFIG["TARGET_CPU"] == "aarch64":
         SOURCES += [
             "xptcinvoke_aarch64.cpp",

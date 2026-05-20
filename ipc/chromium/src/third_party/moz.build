@@ -60,6 +60,11 @@ if CONFIG["TARGET_KERNEL"] == "Linux":
             'libevent/epoll_sub.c',
         ]
 
+if CONFIG["TARGET_KERNEL"] == "Redox":
+    SOURCES += [
+        'libevent/epoll.c',
+    ]
+
 if CONFIG["TARGET_KERNEL"] == "SunOS":
     SOURCES += [
         'libevent/devpoll.c',

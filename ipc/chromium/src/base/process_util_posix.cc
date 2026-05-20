@@ -43,6 +43,10 @@
 #  define HAVE_WAITID
 #endif
 
+#ifdef __redox__
+#  undef HAVE_WAITID
+#endif
+
 #ifdef DEBUG
 #  define LOG_AND_ASSERT CHROMIUM_LOG(FATAL)
 #else
@@ -130,7 +134,7 @@ void CloseSuperfluousFds(void* aCtx, bool (*aShouldPreserve)(void*, int)) {
   static const rlim_t kSystemDefaultMaxFds = 256;
   static const char kFDDir[] = "/dev/fd";
 #elif defined(__DragonFly__) || defined(XP_FREEBSD) || defined(XP_NETBSD) || \
-    defined(XP_OPENBSD)
+    defined(XP_OPENBSD) || defined(XP_REDOX)
   // the getrlimit below should never fail, so whatever ..
   static const rlim_t kSystemDefaultMaxFds = 1024;
   // at least /dev/fd will exist

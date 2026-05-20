@@ -116,9 +116,6 @@ ev_arc4random_buf(void *buf, size_t n)
 
 #else /* !EVENT__HAVE_ARC4RANDOM { */
 
-#ifdef EVENT__ssize_t
-#define ssize_t EVENT__ssize_t
-#endif
 #define ARC4RANDOM_EXPORT static
 #define ARC4_LOCK_() EVLOCK_LOCK(arc4rand_lock, 0)
 #define ARC4_UNLOCK_() EVLOCK_UNLOCK(arc4rand_lock, 0)

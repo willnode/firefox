@@ -22,6 +22,7 @@
 #  include <fcntl.h>
 #endif
 
+#include <strings.h>
 #include <stdio.h>
 #include <stdarg.h>
 #include <time.h>

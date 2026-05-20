@@ -11,6 +11,7 @@
 #include <ctype.h>
 
 #include <string>
+#include <strings.h>
 #include <vector>
 
 #include "base/basictypes.h"

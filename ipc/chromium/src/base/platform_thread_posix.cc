@@ -50,7 +50,7 @@ PlatformThreadId PlatformThread::CurrentId() {
   return port;
 #elif defined(XP_LINUX)
   return syscall(__NR_gettid);
-#elif defined(XP_OPENBSD) || defined(XP_SOLARIS) || defined(__GLIBC__)
+#elif defined(XP_OPENBSD) || defined(XP_REDOX) || defined(XP_SOLARIS) || defined(__GLIBC__)
   return (intptr_t)(pthread_self());
 #elif defined(XP_NETBSD)
   return _lwp_self();

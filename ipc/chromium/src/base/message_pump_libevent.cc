@@ -5,6 +5,7 @@
 #include "base/message_pump_libevent.h"
 
 #include <errno.h>
+#include <time.h>
 #include <fcntl.h>
 #if defined(ANDROID) || defined(XP_UNIX)
 #  include <unistd.h>

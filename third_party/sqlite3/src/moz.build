@@ -95,6 +95,12 @@ DEFINES['SQLITE_OMIT_BUILTIN_TEST'] = True
 if CONFIG['OS_TARGET'] == 'Android':
     # On Android there's no tmp partition, so always use a MEMORY temp store.
     DEFINES['SQLITE_TEMP_STORE'] = 3
+elif CONFIG['OS_TARGET'] == 'Redox':
+    # assume the worst performance possible to avoid crash
+    DEFINES['SQLITE_MALLOC_SOFT_LIMIT'] = 0
+    DEFINES['SQLITE_MAX_MMAP_SIZE'] = 0
+    DEFINES['SQLITE_THREADSAFE'] = 1 
+    DEFINES['SQLITE_TEMP_STORE'] = 3
 elif CONFIG['HAVE_64BIT_BUILD']:
     # On 64bit platforms default to a MEMORY temp store for performance.
     DEFINES['SQLITE_TEMP_STORE'] = 2
